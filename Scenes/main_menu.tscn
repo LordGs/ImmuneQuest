@@ -1,0 +1,337 @@
+[gd_scene load_steps=17 format=3 uid="uid://bjslwvghhkipe"]
+
+[ext_resource type="Script" path="res://Script/main_menu.gd" id="1_rsk82"]
+[ext_resource type="Texture2D" uid="uid://dw4b37ch5wl74" path="res://Characters/Player/player.png" id="2_cthio"]
+[ext_resource type="AudioStream" uid="uid://suelhjobpcb2" path="res://audio/click.wav" id="3_1d6nf"]
+[ext_resource type="AudioStream" uid="uid://7rrcq7iw3ig6" path="res://audio/main_menu_theme.mp3" id="3_kcv3s"]
+[ext_resource type="Script" path="res://Scenes/scoreboard.gd" id="4_inqig"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mlt2"]
+line_spacing = 0.0
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvlee"]
+line_spacing = 0.0
+font_size = 30
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8eql"]
+atlas = ExtResource("2_cthio")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fks3"]
+atlas = ExtResource("2_cthio")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqwcv"]
+atlas = ExtResource("2_cthio")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8214r"]
+atlas = ExtResource("2_cthio")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgauc"]
+atlas = ExtResource("2_cthio")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvo0u"]
+atlas = ExtResource("2_cthio")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bywye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8eql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fks3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqwcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8214r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgauc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvo0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cy22p"]
+font_size = 132
+
+[sub_resource type="LabelSettings" id="LabelSettings_8qhyd"]
+font_size = 30
+
+[node name="MainMenu" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_rsk82")
+
+[node name="Main" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Main"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.107963, 0.123695, 0.20253, 1)
+
+[node name="Panel" type="Panel" parent="Main"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -905.0
+offset_top = -487.0
+offset_right = -305.0
+offset_bottom = 495.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="play" type="Button" parent="Main/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -378.0
+offset_right = 150.0
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Play"
+
+[node name="options" type="Button" parent="Main/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -216.0
+offset_right = 150.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Options"
+
+[node name="score" type="Button" parent="Main/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -45.0
+offset_right = 150.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Scores"
+
+[node name="quit" type="Button" parent="Main/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 116.0
+offset_right = 150.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Exit "
+
+[node name="Label" type="Label" parent="Main/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 635.0
+offset_top = -460.0
+offset_right = 1308.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ImmuneQuest
+Defense"
+label_settings = SubResource("LabelSettings_8mlt2")
+horizontal_alignment = 1
+
+[node name="temporary" type="Label" parent="Main/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = 407.0
+offset_right = 337.0
+offset_bottom = 444.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "temporary main menu"
+label_settings = SubResource("LabelSettings_wvlee")
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="Main/Panel"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main/Panel/Node2D"]
+position = Vector2(1274, 380)
+scale = Vector2(23, 23)
+sprite_frames = SubResource("SpriteFrames_bywye")
+frame_progress = 0.853318
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="Main/Panel"]
+process_mode = 3
+position = Vector2(934, 502)
+stream = ExtResource("3_kcv3s")
+volume_db = 5.0
+autoplay = true
+
+[node name="Options" type="CanvasLayer" parent="."]
+
+[node name="scoreboard" type="CanvasLayer" parent="."]
+script = ExtResource("4_inqig")
+
+[node name="ColorRect" type="ColorRect" parent="scoreboard"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.107963, 0.123695, 0.20253, 1)
+
+[node name="return" type="Button" parent="scoreboard"]
+offset_left = 71.0
+offset_top = 954.0
+offset_right = 253.0
+offset_bottom = 1028.0
+text = "Return"
+
+[node name="reset_scores" type="Button" parent="scoreboard"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -268.0
+offset_top = 50.0
+offset_right = -51.8
+offset_bottom = 124.0
+grow_horizontal = 0
+text = "Reset"
+
+[node name="Panel" type="Panel" parent="scoreboard"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -543.0
+offset_top = -395.0
+offset_right = 543.0
+offset_bottom = 493.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scoreboard/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -384.0
+offset_top = -85.0
+offset_right = 384.0
+offset_bottom = 74.0
+grow_horizontal = 2
+text = "Scoreboard"
+label_settings = SubResource("LabelSettings_cy22p")
+horizontal_alignment = 1
+
+[node name="Level1" type="Panel" parent="scoreboard/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -504.0
+offset_top = 60.0
+offset_right = 505.0
+offset_bottom = 173.0
+grow_horizontal = 2
+
+[node name="label" type="Label" parent="scoreboard/Panel/Level1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 39.0
+offset_top = -18.5
+offset_right = 132.0
+offset_bottom = 18.5
+grow_vertical = 2
+text = "Level 1"
+label_settings = SubResource("LabelSettings_8qhyd")
+
+[node name="label2" type="Label" parent="scoreboard/Panel/Level1"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -389.0
+offset_top = -18.5
+offset_right = -246.0
+offset_bottom = 18.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "Highscore:"
+label_settings = SubResource("LabelSettings_8qhyd")
+
+[node name="label3" type="Label" parent="scoreboard/Panel/Level1"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = -18.5
+offset_right = -26.0
+offset_bottom = 18.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_8qhyd")
+
+[node name="click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1d6nf")
+volume_db = 15.0
+
+[connection signal="pressed" from="Main/Panel/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main/Panel/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main/Panel/score" to="." method="_on_score_pressed"]
+[connection signal="pressed" from="Main/Panel/quit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="scoreboard/return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="scoreboard/reset_scores" to="scoreboard" method="_on_reset_scores_pressed"]

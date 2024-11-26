@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b80o3jbrigan0"]
+
+[ext_resource type="Script" path="res://Characters/Player/weapon.gd" id="1_oeu3r"]
+[ext_resource type="Texture2D" uid="uid://dn0j5amhy2dfo" path="res://UI/shoot.png" id="2_cypdu"]
+[ext_resource type="AudioStream" uid="uid://b11ouclu1xh8f" path="res://audio/hit_none.wav" id="3_ob8x2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1n7d"]
+radius = 5.0
+
+[node name="weapon" type="Area2D"]
+script = ExtResource("1_oeu3r")
+
+[node name="hit_area" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q1n7d")
+
+[node name="weapon_pivot" type="Marker2D" parent="."]
+
+[node name="weapon_edge" type="Marker2D" parent="weapon_pivot"]
+unique_name_in_owner = true
+position = Vector2(29, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="weapon_pivot/weapon_edge"]
+visible = false
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_cypdu")
+
+[node name="attack_timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="hit_none" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ob8x2")
+
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]

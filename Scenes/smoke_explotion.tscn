@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://eprkc6qa8uem"]
+
+[ext_resource type="Script" path="res://Script/smoke_explotion.gd" id="1_kfeyw"]
+[ext_resource type="Texture2D" uid="uid://osdcmqxkapoo" path="res://weapon/explosion.png" id="1_vmsr6"]
+[ext_resource type="AudioStream" uid="uid://dlfg5fdp7qpi6" path="res://audio/mob_death.wav" id="3_4w5qe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm13y"]
+atlas = ExtResource("1_vmsr6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gd1v"]
+atlas = ExtResource("1_vmsr6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk78h"]
+atlas = ExtResource("1_vmsr6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfiws"]
+atlas = ExtResource("1_vmsr6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ftrw3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm13y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gd1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk78h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfiws")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 10.0
+}]
+
+[node name="smoke_explotion" type="Area2D"]
+script = ExtResource("1_kfeyw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ftrw3")
+animation = &"explode"
+frame = 3
+frame_progress = 1.0
+
+[node name="death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4w5qe")
+volume_db = -5.0

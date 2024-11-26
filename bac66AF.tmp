@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://dm2opnmwyogsr"]
+
+[ext_resource type="Texture2D" uid="uid://cw8dec3srs71s" path="res://Characters/Mobs/bacteria_1/bacteria.png" id="1_2sl6a"]
+[ext_resource type="Script" path="res://bacteria_1.gd" id="1_go468"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nodd0"]
+atlas = ExtResource("1_2sl6a")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0w2l"]
+atlas = ExtResource("1_2sl6a")
+region = Rect2(64, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72qvx"]
+atlas = ExtResource("1_2sl6a")
+region = Rect2(128, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_durln"]
+atlas = ExtResource("1_2sl6a")
+region = Rect2(192, 0, 64, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhk88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nodd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0w2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72qvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_durln")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_skuh8"]
+radius = 32.0624
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn0ql"]
+bg_color = Color(0, 0, 0, 0.329412)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1dpmf"]
+bg_color = Color(0.597986, 0.195187, 0.690974, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v54tm"]
+radius = 727.001
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2uemt"]
+radius = 34.0
+
+[node name="bacteria_1" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+platform_floor_layers = 4294901760
+script = ExtResource("1_go468")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.3, 2.3)
+sprite_frames = SubResource("SpriteFrames_fhk88")
+animation = &"idle"
+frame_progress = 0.95181
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_skuh8")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -37.0
+offset_top = -64.0
+offset_right = 37.0
+offset_bottom = -49.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rn0ql")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1dpmf")
+max_value = 50.0
+value = 50.0
+show_percentage = false
+
+[node name="mob_range" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mob_range"]
+shape = SubResource("CircleShape2D_v54tm")
+debug_color = Color(0.507768, 0.565837, 0.3497, 0.42)
+
+[node name="stop_range" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_range"]
+shape = SubResource("CircleShape2D_2uemt")
+
+[connection signal="body_entered" from="mob_range" to="." method="_on_mob_range_body_entered"]
+[connection signal="body_exited" from="mob_range" to="." method="_on_mob_range_body_exited"]

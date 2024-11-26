@@ -1,0 +1,260 @@
+[gd_scene load_steps=15 format=3 uid="uid://djg4syljsm63f"]
+
+[ext_resource type="PackedScene" uid="uid://mqjvayou7hsh" path="res://player.tscn" id="1_ism1i"]
+[ext_resource type="Script" path="res://world.gd" id="1_p766d"]
+[ext_resource type="AudioStream" uid="uid://86k5xpm5hj0s" path="res://audio/bad_apple.wav" id="2_7f5xa"]
+[ext_resource type="PackedScene" uid="uid://dm2opnmwyogsr" path="res://bacteria_1.tscn" id="4_8smxv"]
+[ext_resource type="FontFile" uid="uid://bp28g3hj87hxa" path="res://fonts/gamefont.ttf" id="4_bn6xl"]
+[ext_resource type="Texture2D" uid="uid://crsj1vt3er7ym" path="res://UI/up_btn.png" id="6_k5h5t"]
+[ext_resource type="Texture2D" uid="uid://bheaumcjhcyu7" path="res://UI/down_btn.png" id="8_uvl5d"]
+[ext_resource type="Texture2D" uid="uid://b3spo576nffvx" path="res://UI/right_btn.png" id="9_03axw"]
+[ext_resource type="Texture2D" uid="uid://rmaa1u462jhf" path="res://UI/left_btn.png" id="10_8qreb"]
+[ext_resource type="Texture2D" uid="uid://dn0j5amhy2dfo" path="res://UI/shoot.png" id="10_hf60v"]
+[ext_resource type="Texture2D" uid="uid://dref2chajb31y" path="res://UI/GUI.png" id="11_gvmwu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruui5"]
+bg_color = Color(0, 0, 0, 0.27451)
+corner_radius_top_left = 2
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npl8o"]
+bg_color = Color(0.529412, 0.964706, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjwgs"]
+texture = ExtResource("11_gvmwu")
+texture_margin_left = 14.4053
+texture_margin_top = 14.18
+texture_margin_right = 14.2925
+texture_margin_bottom = 14.2639
+region_rect = Rect2(1.51256, 33.6789, 44.8667, 44.725)
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_p766d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_left = -2818.0
+offset_top = -1562.0
+offset_right = 4094.0
+offset_bottom = 2326.0
+color = Color(0.72549, 0.32549, 0.341176, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_ism1i")]
+unique_name_in_owner = true
+position = Vector2(960, 540)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-640, -400)
+stream = ExtResource("2_7f5xa")
+autoplay = true
+
+[node name="monsters" type="Node2D" parent="."]
+
+[node name="bacteria_1" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(1427, 614)
+
+[node name="bacteria_2" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(-227, 941)
+
+[node name="bacteria_3" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(-610, -63)
+
+[node name="bacteria_4" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(1072, -308)
+
+[node name="bacteria_5" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(209, -369)
+
+[node name="bacteria_6" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(539, 1168)
+
+[node name="bacteria_7" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(-225, 1712)
+
+[node name="bacteria_8" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(1997, -33)
+
+[node name="bacteria_9" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(1371, 1400)
+
+[node name="bacteria_10" parent="monsters" instance=ExtResource("4_8smxv")]
+position = Vector2(-1310, 982)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 34.0
+offset_top = 20.0
+offset_right = 74.0
+offset_bottom = 60.0
+scale = Vector2(1.77378, 1.392)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 19.0
+offset_right = 58.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_bn6xl")
+theme_override_font_sizes/font_size = 30
+text = "HP"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 25.0
+offset_right = 186.0
+offset_bottom = 48.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ruui5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_npl8o")
+value = 100.0
+show_percentage = false
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_top = 22.0
+offset_right = -210.0
+offset_bottom = 62.0
+grow_horizontal = 0
+scale = Vector2(1.8961, 1.8961)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Control2"]
+wait_time = 30.0
+autostart = true
+
+[node name="timer_count" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 19.0
+offset_right = 47.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_bn6xl")
+theme_override_font_sizes/font_size = 30
+text = "00:00"
+
+[node name="Control3" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 13.0
+offset_right = 78.0
+offset_bottom = 53.0
+scale = Vector2(1.55553, 1.55553)
+
+[node name="score_label" type="Label" parent="CanvasLayer/Control3"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 54.0
+offset_right = 102.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_bn6xl")
+theme_override_font_sizes/font_size = 30
+text = "Score:"
+
+[node name="score_count" type="Label" parent="CanvasLayer/Control3"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 55.0
+offset_right = 267.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_bn6xl")
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="shoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="up" type="TouchScreenButton" parent="CanvasLayer/shoot"]
+position = Vector2(-390, -517)
+scale = Vector2(2.3, 2.3)
+texture_normal = ExtResource("6_k5h5t")
+texture_pressed = ExtResource("10_hf60v")
+action = "shoot_up"
+
+[node name="down" type="TouchScreenButton" parent="CanvasLayer/shoot"]
+position = Vector2(-390, -216)
+scale = Vector2(2.3, 2.3)
+texture_normal = ExtResource("8_uvl5d")
+texture_pressed = ExtResource("10_hf60v")
+action = "shoot_down"
+
+[node name="right" type="TouchScreenButton" parent="CanvasLayer/shoot"]
+position = Vector2(-240, -367)
+scale = Vector2(2.3, 2.3)
+texture_normal = ExtResource("9_03axw")
+texture_pressed = ExtResource("10_hf60v")
+action = "shoot_right"
+
+[node name="left" type="TouchScreenButton" parent="CanvasLayer/shoot"]
+position = Vector2(-540, -367)
+scale = Vector2(2.3, 2.3)
+texture_normal = ExtResource("10_8qreb")
+texture_pressed = ExtResource("10_hf60v")
+action = "shoot_left"
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="GameOver"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -358.0
+offset_right = -383.0
+offset_bottom = -212.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_cjwgs")
+
+[connection signal="add_score" from="monsters/bacteria_1" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_2" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_3" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_4" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_5" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_6" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_7" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_8" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_9" to="." method="_on_add_score"]
+[connection signal="add_score" from="monsters/bacteria_10" to="." method="_on_add_score"]
+[connection signal="timeout" from="CanvasLayer/Control2/Timer" to="." method="_on_timer_timeout"]
