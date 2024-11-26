@@ -274,6 +274,9 @@ y_sort_enabled = true
 [node name="bacteria_1" parent="monsters" instance=ExtResource("6_1lfti")]
 position = Vector2(1810, 411)
 
+[node name="bacteria_16" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(431, -83)
+
 [node name="bacteria_2" parent="monsters" instance=ExtResource("6_1lfti")]
 position = Vector2(886, -329)
 
