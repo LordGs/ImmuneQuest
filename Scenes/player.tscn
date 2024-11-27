@@ -9,14 +9,13 @@
 [ext_resource type="AudioStream" uid="uid://37rhybiiiupf" path="res://audio/waterstep.mp3" id="6_p3mkl"]
 
 [sub_resource type="Gradient" id="Gradient_m4nt3"]
-offsets = PackedFloat32Array(0, 0.698745)
+offsets = PackedFloat32Array(0, 0.845188)
 colors = PackedColorArray(0.61, 0.61, 0.61, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1fka2"]
 gradient = SubResource("Gradient_m4nt3")
 width = 500
 height = 500
-use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0)
@@ -459,8 +458,8 @@ script = ExtResource("1_cb6g7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -28)
-scale = Vector2(3.72, 2.808)
-energy = 0.5
+scale = Vector2(7.95725, 3.65273)
+energy = 0.3
 range_z_max = 10
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.105882)

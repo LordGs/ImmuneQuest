@@ -66,7 +66,7 @@ radius = 34.0
 
 [sub_resource type="Gradient" id="Gradient_5s2ka"]
 offsets = PackedFloat32Array(0, 0.301255, 0.723849)
-colors = PackedColorArray(0.38, 0.38, 0.38, 1, 0.194118, 0.194118, 0.194118, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.29219, 0.29219, 0.29219, 1, 0.194118, 0.194118, 0.194118, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dg8su"]
 gradient = SubResource("Gradient_5s2ka")
@@ -131,7 +131,8 @@ wait_time = 0.1
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
-scale = Vector2(2.36, 2.25)
+scale = Vector2(0.676734, 0.636831)
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_dg8su")
 
 [connection signal="body_entered" from="mob_range" to="." method="_on_mob_range_body_entered"]

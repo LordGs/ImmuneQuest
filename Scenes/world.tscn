@@ -239,8 +239,11 @@ background_mode = 3
 background_energy_multiplier = 1.78
 ambient_light_energy = 0.85
 glow_enabled = true
+glow_levels/2 = 3.84
+glow_levels/3 = 0.0
+glow_levels/5 = 0.0
 glow_strength = 0.5
-glow_bloom = 0.5
+glow_bloom = 1.0
 glow_blend_mode = 0
 
 [node name="World" type="Node2D"]
