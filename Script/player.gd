@@ -26,6 +26,7 @@ var footstep_interval = 0.33  # Interval in seconds between footstep sounds
 var last_step = "right"  # Track the last step taken
 
 func _ready() -> void:
+	sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 	joystick.show()
 	last_direction = "front"
 
@@ -90,7 +91,7 @@ func _physics_process(delta):
 			# Check for health depletion
 			if player_health <= 0 and not is_dead:
 				is_dead = true  # Set dead state
-				sprite.modulate = Color(1, 1, 1, 1)
+				sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 				
 				sprite.play("death")
 				death_duration_timer.start()  # Start timer for death animation duration
@@ -105,7 +106,7 @@ func _physics_process(delta):
 
 func _on_invincible_state_timer_timeout() -> void:
 	invincible = false
-	sprite.modulate = Color(1, 1, 1, 1)
+	sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 
 # Function to handle attack input
 func _input(event: InputEvent) -> void:

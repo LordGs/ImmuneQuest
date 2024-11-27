@@ -11,7 +11,7 @@ var is_knocked_back = false  # Check if mob is knocked back
 var player_in_range = false
 
 func _ready() -> void:
-	bacteria_anim.modulate = Color(1, 1, 1, 1)
+	bacteria_anim.modulate = Color(1.3, 2.5, 1.3, 1)
 
 func _physics_process(delta):
 	bacteria_anim.play("idle")
@@ -83,4 +83,4 @@ func _on_mob_range_body_exited(body: Node2D) -> void:
 
 
 func _on_hit_anim_timeout() -> void:
-	bacteria_anim.modulate = Color(1, 1, 1, 1)
+	bacteria_anim.modulate = Color(1.3, 2.5, 1.3, 1)

@@ -89,6 +89,7 @@ scale = Vector2(0.0447917, 0.0380464)
 texture = ExtResource("2_scma1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.5, 2, 1.5, 1)
 scale = Vector2(2.3, 2.3)
 sprite_frames = SubResource("SpriteFrames_fhk88")
 animation = &"idle"

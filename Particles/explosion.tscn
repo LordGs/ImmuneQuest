@@ -10,9 +10,11 @@ point_count = 2
 script = ExtResource("1_to781")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1.3, 10, 1.3, 1)
 texture_filter = 1
 emitting = false
 amount = 60
+lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
 spread = 180.0
@@ -22,4 +24,3 @@ initial_velocity_max = 100.0
 scale_amount_min = 2.0
 scale_amount_max = 10.0
 scale_amount_curve = SubResource("Curve_fpmi7")
-color = Color(0.211517, 0.7, 0.147, 1)
