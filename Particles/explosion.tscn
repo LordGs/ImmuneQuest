@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch7gnplmuml6f"]
+
+[ext_resource type="Script" path="res://Particles/explosion.gd" id="1_to781"]
+
+[sub_resource type="Curve" id="Curve_fpmi7"]
+_data = [Vector2(0.0114068, 1), 0.0, 0.0, 0, 0, Vector2(0.764259, 0.140157), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="explosion" type="Node2D"]
+script = ExtResource("1_to781")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_fpmi7")
+color = Color(0.211517, 0.7, 0.147, 1)

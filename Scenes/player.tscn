@@ -14,8 +14,8 @@ colors = PackedColorArray(0.61, 0.61, 0.61, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1fka2"]
 gradient = SubResource("Gradient_m4nt3")
-width = 500
-height = 500
+width = 2000
+height = 2000
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0)
@@ -430,8 +430,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fgufl"]
-radius = 30.0167
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ok4pb"]
+radius = 34.0
+height = 112.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_272v8"]
 radius = 44.0114
@@ -458,7 +459,7 @@ script = ExtResource("1_cb6g7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -28)
-scale = Vector2(7.95725, 3.65273)
+scale = Vector2(1.85884, 1.01023)
 energy = 0.3
 range_z_max = 10
 shadow_enabled = true
@@ -474,8 +475,8 @@ sprite_frames = SubResource("SpriteFrames_ij2e8")
 animation = &"idle_side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
-shape = SubResource("CircleShape2D_fgufl")
+position = Vector2(0, -41)
+shape = SubResource("CapsuleShape2D_ok4pb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -26)

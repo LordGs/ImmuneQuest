@@ -52,10 +52,16 @@ func take_damage():
 		ScoreManager.addWorld1Objective()
 		queue_free()
 		
-		const SMOKE_SCENE = preload("res://Scenes/smoke_explotion.tscn")
-		var smoke = SMOKE_SCENE.instantiate()
-		get_parent().add_child(smoke)
-		smoke.global_position = global_position
+		const EXPLOTION = preload("res://Particles/explosion.tscn")
+		var explotion = EXPLOTION.instantiate()
+		get_parent().add_child(explotion)
+		explotion.global_position = global_position
+		explotion.scale = Vector2(5, 5)
+		
+		#const SMOKE_SCENE = preload("res://Scenes/smoke_explotion.tscn")
+		#var smoke = SMOKE_SCENE.instantiate()
+		#get_parent().add_child(smoke)
+		#smoke.global_position = global_position
 
 func apply_knockback():
 	# Calculate knockback force based on the direction away from the player
