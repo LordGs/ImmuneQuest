@@ -10,7 +10,7 @@
 
 [sub_resource type="Gradient" id="Gradient_m4nt3"]
 offsets = PackedFloat32Array(0, 0.698745)
-colors = PackedColorArray(0.5, 0.5, 0.5, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.61, 0.61, 0.61, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1fka2"]
 gradient = SubResource("Gradient_m4nt3")
@@ -19,6 +19,7 @@ height = 500
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gkxwc"]
 atlas = ExtResource("1_fljv0")
@@ -471,7 +472,7 @@ modulate = Color(1, 1, 1, 0.827)
 position = Vector2(-3, -91)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_ij2e8")
-animation = &"death"
+animation = &"idle_side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)

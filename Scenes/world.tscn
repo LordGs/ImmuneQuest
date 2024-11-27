@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://djg4syljsm63f"]
+[gd_scene load_steps=59 format=4 uid="uid://djg4syljsm63f"]
 
 [ext_resource type="Script" path="res://Script/world.gd" id="1_t6mk0"]
 [ext_resource type="Texture2D" uid="uid://y3e88cfggidn" path="res://TileSets/MapFloor2.png" id="2_1fx78"]
@@ -175,6 +175,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_dapkq"]
 tile_size = Vector2i(32, 32)
+uv_clipping = true
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
@@ -232,6 +233,15 @@ font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_72noy"]
 font_size = 59
+
+[sub_resource type="Environment" id="Environment_vhqqc"]
+background_mode = 3
+background_energy_multiplier = 1.78
+ambient_light_energy = 0.85
+glow_enabled = true
+glow_strength = 0.5
+glow_bloom = 0.5
+glow_blend_mode = 0
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -825,13 +835,10 @@ stream = ExtResource("18_078tn")
 volume_db = 5.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.582156, 0.40641, 0.445085, 1)
+color = Color(0.328078, 0.335949, 0.324198, 1)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
-color = Color(0.334115, 0.475902, 0.413548, 1)
-energy = 1.84
-blend_mode = 1
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vhqqc")
 
 [connection signal="timeout" from="CanvasLayer/Control2/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Control4/Button" to="." method="_on_button_pressed"]
