@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Characters/Player/weapon.gd" id="1_oeu3r"]
 [ext_resource type="Texture2D" uid="uid://dn0j5amhy2dfo" path="res://UI/shoot.png" id="2_cypdu"]
-[ext_resource type="AudioStream" uid="uid://brvpgcdefux4x" path="res://audio/swing.wav" id="3_oux0s"]
+[ext_resource type="AudioStream" uid="uid://b11ouclu1xh8f" path="res://audio/hit_none.wav" id="3_ob8x2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q1n7d"]
 radius = 5.0
@@ -28,6 +28,6 @@ texture = ExtResource("2_cypdu")
 wait_time = 0.25
 
 [node name="hit_none" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_oux0s")
+stream = ExtResource("3_ob8x2")
 
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]

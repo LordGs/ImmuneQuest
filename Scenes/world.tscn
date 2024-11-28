@@ -291,6 +291,27 @@ y_sort_enabled = true
 [node name="bacteria_1" parent="monsters" instance=ExtResource("6_1lfti")]
 position = Vector2(1810, 411)
 
+[node name="bacteria_17" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(1190, 317)
+
+[node name="bacteria_18" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(670, 325)
+
+[node name="bacteria_19" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(2220, 803)
+
+[node name="bacteria_20" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(712, 831)
+
+[node name="bacteria_21" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(-490, 1123)
+
+[node name="bacteria_22" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(-822, 1483)
+
+[node name="bacteria_23" parent="monsters" instance=ExtResource("6_1lfti")]
+position = Vector2(-902, 1099)
+
 [node name="bacteria_16" parent="monsters" instance=ExtResource("6_1lfti")]
 position = Vector2(431, -83)
 
@@ -529,6 +550,12 @@ position = Vector2(-292, -322)
 scale = Vector2(2.65625, 2.65625)
 texture_normal = ExtResource("11_bf7s8")
 action = "attack"
+
+[node name="dash" type="TouchScreenButton" parent="CanvasLayer/attack"]
+position = Vector2(-126, -136)
+scale = Vector2(1.96875, 1.96875)
+texture_normal = ExtResource("11_bf7s8")
+action = "dash"
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 process_mode = 3

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var damaged: AudioStreamPlayer2D = $sounds/damaged
 @onready var right_footstep_sound: AudioStreamPlayer2D = $sounds/right_footstep
 @onready var left_footstep_sound: AudioStreamPlayer2D = $sounds/left_footstep
+@onready var collission: CollisionShape2D = $CollisionShape2D
 
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var attack_duration_timer: Timer = $attack_duration_timer
@@ -16,16 +17,26 @@ signal health_depleted
 @onready var sprite = $AnimatedSprite2D
 var invincible = false
 var last_direction = "front"
-var is_attacking = false  # State variable to track attacking
-var saved_velocity = Vector2(0, 0)  # Store player's velocity during attack
-var current_velocity = Vector2(0, 0)  # Track current velocity during movement
-var is_dead = false  # Flag to indicate if the player is dead
+var is_attacking = false
+var saved_velocity = Vector2(0, 0)
+var current_velocity = Vector2(0, 0)
+var is_dead = false
 
-var footstep_timer = 0.0  # Timer to track footstep timing
-var footstep_interval = 0.33  # Interval in seconds between footstep sounds
-var last_step = "right"  # Track the last step taken
+var footstep_timer = 0.0
+var footstep_interval = 0.33
+var last_step = "right"
+
+# Dash Variables
+var dash_speed = 3000  # Dash speed multiplier
+var dash_duration = 0.2  # Dash lasts for 0.2 seconds
+
+var is_dashing = false
+var can_dash = true
+@onready var dash_timer: Timer = $dash_timer
+@onready var dash_cooldown: Timer = $dash_cooldown
 
 func _ready() -> void:
+	
 	sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 	joystick.show()
 	last_direction = "front"
@@ -33,8 +44,15 @@ func _ready() -> void:
 func _physics_process(delta):
 	var direction = joystick.posVector
 
+	# Dash logic
+	if is_dashing:
+		# Dash using last_direction instead of joystick direction
+		velocity = get_dash_direction() * dash_speed  # Dash in the direction of last_direction
+		move_and_slide()  # Keep moving while dashing
+		return  # Skip the rest of the physics processing during dash
+
 	# Save current velocity (used for resuming movement after attack)
-	if not is_attacking and not is_dead:  # Prevent movement if dead
+	if not is_attacking and not is_dead and not is_dashing:
 		if direction:
 			current_velocity = direction * SPEED
 
@@ -59,7 +77,7 @@ func _physics_process(delta):
 		if direction != Vector2.ZERO:
 			if abs(direction.x) > abs(direction.y):
 				sprite.play("walk_side")
-				sprite.flip_h = direction.x < 0  # Flip sprite if moving left
+				sprite.flip_h = direction.x < 0
 				last_direction = "right" if direction.x > 0 else "left"
 			elif direction.y < 0:
 				sprite.play("walk_back")
@@ -88,13 +106,12 @@ func _physics_process(delta):
 			damaged.play()
 			invincible_state_timer.start()
 			
-			# Check for health depletion
 			if player_health <= 0 and not is_dead:
-				is_dead = true  # Set dead state
+				is_dead = true
 				sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 				
 				sprite.play("death")
-				death_duration_timer.start()  # Start timer for death animation duration
+				death_duration_timer.start()
 				return  # Exit to prevent further processing
 
 			if player_health <= -5.0:
@@ -108,39 +125,73 @@ func _on_invincible_state_timer_timeout() -> void:
 	invincible = false
 	sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 
-# Function to handle attack input
+# Combined _input function for both attack and dash
 func _input(event: InputEvent) -> void:
+	# Handle attack input
 	if event.is_action_pressed("attack") and not is_attacking and not is_dead:
 		attack()
 
+	# Handle dash input
+	if event.is_action_pressed("dash") and not is_dashing and not is_dead:
+		dash()
+
 # Attack function
 func attack():
-	is_attacking = true  # Set attacking state
-	velocity = Vector2(0, 0)  # Stop movement while attacking
+	is_attacking = true
+	velocity = Vector2(0, 0)
 
 	# Determine the correct attack animation based on direction
 	if last_direction == "front":
 		sprite.play("attack_front")
 	elif last_direction == "right" or last_direction == "left":
 		sprite.play("attack_side")
-		# Flip sprite based on direction (left or right)
 		sprite.flip_h = (last_direction == "left")
 	elif last_direction == "up":
 		sprite.play("attack_back")
 
-	# Start attack duration timer to manage attack duration
+	# Start attack duration timer
 	attack_duration_timer.start()
 
 func _on_attack_duration_timer_timeout() -> void:
-	# After attack animation ends, allow movement again
 	is_attacking = false
-	if not is_dead:  # Only resume movement if not dead
+	if not is_dead:
 		velocity = current_velocity  # Resume movement based on joystick hold
+		
+@onready var dashsfx: AudioStreamPlayer2D = $sounds/dash
 
-# Function to handle death animation end
-func _on_death_duration_timeout() -> void:
-	health_depleted.emit()
-	joystick.hide()
-	sprite.queue_free()
-	get_node("../GameOver").game_over()
-	print("you died")
+# Dash function
+func dash():
+	if can_dash == true:
+		# Start the dash
+		is_dashing = true
+		dashsfx.play()
+		velocity = get_dash_direction() * dash_speed  # Dash using last_direction
+		dash_timer.start()  # Start the dash timer to end the dash
+		sprite.play("dash")  # Play dash animation
+		sprite.modulate = Color(2, 2, 2, 1)
+		can_dash = false
+		
+
+# Dash cooldown
+func _on_dash_timer_timeout() -> void:
+	is_dashing = false
+	sprite.modulate = Color(1.1, 1.1, 1.1, 1)
+	dash_cooldown.start()
+	
+	velocity = current_velocity  # Resume normal velocity after dash
+
+# Function to get the dash direction based on last_direction
+func get_dash_direction() -> Vector2:
+	if last_direction == "up":
+		return Vector2(0, -1)  # Dash upwards
+	elif last_direction == "right":
+		return Vector2(1, 0)  # Dash to the right
+	elif last_direction == "left":
+		return Vector2(-1, 0)  # Dash to the left
+	elif last_direction == "front":
+		return Vector2(0, 1)  # Dash downwards
+	return Vector2.ZERO  # Default to no direction if unknown
+
+
+func _on_dash_cooldown_timeout() -> void:
+	can_dash = true

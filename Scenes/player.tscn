@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://mqjvayou7hsh"]
+[gd_scene load_steps=70 format=3 uid="uid://mqjvayou7hsh"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_cb6g7"]
 [ext_resource type="Texture2D" uid="uid://dw4b37ch5wl74" path="res://Characters/Player/player.png" id="1_fljv0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ck6306j731ct6" path="res://Scenes/joystick.tscn" id="4_0e31t"]
 [ext_resource type="AudioStream" uid="uid://4sfamnmafseu" path="res://audio/hit.wav" id="6_7muuv"]
 [ext_resource type="AudioStream" uid="uid://ugttj0yttvva" path="res://audio/footstep.wav" id="7_2p34t"]
+[ext_resource type="AudioStream" uid="uid://brvpgcdefux4x" path="res://audio/swing.wav" id="8_cfrfg"]
 
 [sub_resource type="Gradient" id="Gradient_m4nt3"]
 offsets = PackedFloat32Array(0, 0.845188)
@@ -67,6 +68,18 @@ region = Rect2(96, 336, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_carlt"]
 atlas = ExtResource("1_fljv0")
 region = Rect2(144, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6d4g"]
+atlas = ExtResource("1_fljv0")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjs5y"]
+atlas = ExtResource("1_fljv0")
+region = Rect2(48, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt3at"]
+atlas = ExtResource("1_fljv0")
+region = Rect2(96, 432, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gsmj"]
 atlas = ExtResource("1_fljv0")
@@ -279,6 +292,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_s6d4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjs5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt3at")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4gsmj")
 }, {
 "duration": 1.0,
@@ -473,7 +500,7 @@ modulate = Color(1.5, 1.5, 1.5, 1)
 position = Vector2(-3, -91)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_ij2e8")
-animation = &"idle_side"
+animation = &"dash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -26)
@@ -549,9 +576,21 @@ stream = ExtResource("7_2p34t")
 volume_db = 3.0
 pitch_scale = 0.7
 
+[node name="dash" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource("8_cfrfg")
+
 [node name="death_duration" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="dash_timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="dash_cooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="invincible_state_timer" to="." method="_on_invincible_state_timer_timeout"]
 [connection signal="timeout" from="attack_duration_timer" to="." method="_on_attack_duration_timer_timeout"]
 [connection signal="timeout" from="death_duration" to="." method="_on_death_duration_timeout"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
