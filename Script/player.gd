@@ -110,17 +110,7 @@ func _on_invincible_state_timer_timeout() -> void:
 
 # Function to handle attack input
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot_right") and not is_attacking and not is_dead:
-		last_direction = "right"
-		attack()
-	elif event.is_action_pressed("shoot_left") and not is_attacking and not is_dead:
-		last_direction = "left"
-		attack()
-	elif event.is_action_pressed("shoot_up") and not is_attacking and not is_dead:
-		last_direction = "up"
-		attack()
-	elif event.is_action_pressed("shoot_down") and not is_attacking and not is_dead:
-		last_direction = "front"
+	if event.is_action_pressed("attack") and not is_attacking and not is_dead:
 		attack()
 
 # Attack function

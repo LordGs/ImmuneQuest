@@ -14,6 +14,7 @@ var timer_variable: int = 0
 @onready var victory_timer: Timer = $Victory/victory_timer
 @onready var victory_sfx: AudioStreamPlayer2D = $Player/victory_sfx
 
+@onready var shoot: Control = $CanvasLayer/shoot
 
 
 var scores = 0
@@ -22,6 +23,9 @@ var countdown = "start_counting"
 var killCount = 0
 var KillObjective = 15
 func _ready() -> void:
+	#hide the old control
+	shoot.hide()
+	
 	objective.text = "Objective: Kill the\nscattered Bacterias " + str(killCount )+ "/" + str(KillObjective)
 	ScoreManager.connect("add_bacteria_score", bacteriaScore)
 	ScoreManager.connect("add_mushroom_score", mushroomScore)
