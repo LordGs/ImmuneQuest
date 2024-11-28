@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Scenes/camera_2d.gd" id="3_cuo63"]
 [ext_resource type="PackedScene" uid="uid://b80o3jbrigan0" path="res://Characters/Player/weapon.tscn" id="3_umlxg"]
 [ext_resource type="PackedScene" uid="uid://ck6306j731ct6" path="res://Scenes/joystick.tscn" id="4_0e31t"]
-[ext_resource type="AudioStream" uid="uid://tkdk1g4d7w84" path="res://audio/damaged.wav" id="5_h2cph"]
-[ext_resource type="AudioStream" uid="uid://37rhybiiiupf" path="res://audio/waterstep.mp3" id="6_p3mkl"]
+[ext_resource type="AudioStream" uid="uid://4sfamnmafseu" path="res://audio/hit.wav" id="6_7muuv"]
+[ext_resource type="AudioStream" uid="uid://ugttj0yttvva" path="res://audio/footstep.wav" id="7_2p34t"]
 
 [sub_resource type="Gradient" id="Gradient_m4nt3"]
 offsets = PackedFloat32Array(0, 0.845188)
@@ -432,7 +432,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ok4pb"]
 radius = 34.0
-height = 112.0
+height = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_272v8"]
 radius = 44.0114
@@ -476,7 +476,7 @@ sprite_frames = SubResource("SpriteFrames_ij2e8")
 animation = &"idle_side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -41)
+position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_ok4pb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -526,7 +526,8 @@ grow_vertical = 0
 [node name="joystick" parent="CanvasLayer/Control" instance=ExtResource("4_0e31t")]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.380392)
-position = Vector2(350, -307)
+position = Vector2(400, -293)
+scale = Vector2(0.720001, 0.720001)
 
 [node name="invincible_state_timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -537,14 +538,14 @@ wait_time = 0.2
 [node name="sounds" type="Node2D" parent="."]
 
 [node name="damaged" type="AudioStreamPlayer2D" parent="sounds"]
-stream = ExtResource("5_h2cph")
+stream = ExtResource("6_7muuv")
 
 [node name="right_footstep" type="AudioStreamPlayer2D" parent="sounds"]
-stream = ExtResource("6_p3mkl")
+stream = ExtResource("7_2p34t")
 volume_db = 3.0
 
 [node name="left_footstep" type="AudioStreamPlayer2D" parent="sounds"]
-stream = ExtResource("6_p3mkl")
+stream = ExtResource("7_2p34t")
 volume_db = 3.0
 pitch_scale = 0.7
 

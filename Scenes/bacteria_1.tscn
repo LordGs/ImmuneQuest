@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cw8dec3srs71s" path="res://Characters/Mobs/bacterias/bacteria.png" id="1_2sl6a"]
 [ext_resource type="Script" path="res://Script/bacteria_1.gd" id="1_go468"]
 [ext_resource type="Texture2D" uid="uid://r7i4iqdtv1gr" path="res://Characters/Mobs/shadow.png" id="2_scma1"]
-[ext_resource type="AudioStream" uid="uid://b0yy4237kvnnb" path="res://audio/bacteria_hit.wav" id="3_6nc1w"]
+[ext_resource type="AudioStream" uid="uid://4sfamnmafseu" path="res://audio/hit.wav" id="4_v87pp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nodd0"]
 atlas = ExtResource("1_2sl6a")
@@ -125,7 +125,7 @@ unique_name_in_owner = true
 shape = SubResource("CircleShape2D_2uemt")
 
 [node name="on_hit_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_6nc1w")
+stream = ExtResource("4_v87pp")
 
 [node name="hit_anim" type="Timer" parent="."]
 wait_time = 0.1

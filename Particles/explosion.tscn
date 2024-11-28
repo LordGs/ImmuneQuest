@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch7gnplmuml6f"]
+[gd_scene load_steps=5 format=3 uid="uid://ch7gnplmuml6f"]
 
 [ext_resource type="Script" path="res://Particles/explosion.gd" id="1_to781"]
+[ext_resource type="AudioStream" uid="uid://4sfamnmafseu" path="res://audio/hit.wav" id="2_m1ks3"]
+[ext_resource type="AudioStream" uid="uid://hbi8do5xoxwt" path="res://audio/explode.wav" id="3_cmiud"]
 
 [sub_resource type="Curve" id="Curve_fpmi7"]
 _data = [Vector2(0.0114068, 1), 0.0, 0.0, 0, 0, Vector2(0.764259, 0.140157), 0.0, 0.0, 0, 0]
@@ -24,3 +26,9 @@ initial_velocity_max = 100.0
 scale_amount_min = 2.0
 scale_amount_max = 10.0
 scale_amount_curve = SubResource("Curve_fpmi7")
+
+[node name="on_hit_sound" type="AudioStreamPlayer2D" parent="CPUParticles2D"]
+stream = ExtResource("2_m1ks3")
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="CPUParticles2D"]
+stream = ExtResource("3_cmiud")

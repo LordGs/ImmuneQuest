@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bjslwvghhkipe"]
+[gd_scene load_steps=19 format=3 uid="uid://bjslwvghhkipe"]
 
 [ext_resource type="Script" path="res://Script/main_menu.gd" id="1_rsk82"]
 [ext_resource type="Texture2D" uid="uid://dw4b37ch5wl74" path="res://Characters/Player/player.png" id="2_cthio"]
 [ext_resource type="AudioStream" uid="uid://suelhjobpcb2" path="res://audio/click.wav" id="3_1d6nf"]
 [ext_resource type="AudioStream" uid="uid://7rrcq7iw3ig6" path="res://audio/main_menu_theme.mp3" id="3_kcv3s"]
+[ext_resource type="Script" path="res://Scenes/upgrades.gd" id="4_6sfyc"]
 [ext_resource type="Script" path="res://Scenes/scoreboard.gd" id="4_inqig"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8mlt2"]
@@ -63,6 +64,9 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3cm0n"]
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_cy22p"]
 font_size = 132
@@ -230,6 +234,30 @@ autoplay = true
 [node name="Options" type="CanvasLayer" parent="."]
 visible = false
 
+[node name="Upgrades" type="CanvasLayer" parent="."]
+script = ExtResource("4_6sfyc")
+
+[node name="ColorRect2" type="ColorRect" parent="Upgrades"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.107963, 0.123695, 0.20253, 1)
+
+[node name="Label" type="Label" parent="Upgrades"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.0
+offset_top = 53.0
+offset_right = 205.0
+offset_bottom = 141.0
+grow_horizontal = 2
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_3cm0n")
+horizontal_alignment = 1
+
 [node name="scoreboard" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("4_inqig")
@@ -351,5 +379,6 @@ volume_db = 15.0
 [connection signal="pressed" from="Main/Panel/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Main/Panel/score" to="." method="_on_score_pressed"]
 [connection signal="pressed" from="Main/Panel/quit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Main/Panel/upgrades" to="." method="_on_upgrades_pressed"]
 [connection signal="pressed" from="scoreboard/return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="scoreboard/reset_scores" to="scoreboard" method="_on_reset_scores_pressed"]

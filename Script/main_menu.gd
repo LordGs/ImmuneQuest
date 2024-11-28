@@ -6,6 +6,7 @@ extends Node2D
 @onready var main: CanvasLayer = $Main
 @onready var options: CanvasLayer = $Options
 @onready var scoreboard: CanvasLayer = $scoreboard
+@onready var upgrades: CanvasLayer = $Upgrades
 
 
 
@@ -51,3 +52,10 @@ func _on_return_pressed() -> void:
 	main.show()
 	scoreboard.hide()
 	
+
+
+func _on_upgrades_pressed() -> void:
+	click.play()
+	await click.finished
+	upgrades.show()
+	main.hide()
