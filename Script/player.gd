@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var attack_duration_timer: Timer = $attack_duration_timer
 @onready var death_duration_timer: Timer = $death_duration
+@onready var trail: Node2D = $trail
 
 var SPEED = PlayerSystem.speed
 var player_health = PlayerSystem.health
@@ -27,7 +28,7 @@ var footstep_interval = 0.33
 var last_step = "right"
 
 # Dash Variables
-var dash_speed = 3000  # Dash speed multiplier
+var dash_speed = 4000  # Dash speed multiplier
 var dash_duration = 0.2  # Dash lasts for 0.2 seconds
 
 var is_dashing = false
@@ -36,7 +37,7 @@ var can_dash = true
 @onready var dash_cooldown: Timer = $dash_cooldown
 
 func _ready() -> void:
-	
+	trail.trail.emitting = false
 	sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 	joystick.show()
 	last_direction = "front"
@@ -163,6 +164,7 @@ func _on_attack_duration_timer_timeout() -> void:
 func dash():
 	if can_dash == true:
 		# Start the dash
+		trail.trail.emitting = true
 		is_dashing = true
 		dashsfx.play()
 		velocity = get_dash_direction() * dash_speed  # Dash using last_direction
@@ -177,7 +179,7 @@ func _on_dash_timer_timeout() -> void:
 	is_dashing = false
 	sprite.modulate = Color(1.1, 1.1, 1.1, 1)
 	dash_cooldown.start()
-	
+	trail.trail.emitting = false
 	velocity = current_velocity  # Resume normal velocity after dash
 
 # Function to get the dash direction based on last_direction

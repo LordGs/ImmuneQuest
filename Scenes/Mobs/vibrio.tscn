@@ -186,6 +186,7 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="vibrio" type="CharacterBody2D"]
+z_as_relative = false
 scale = Vector2(4, 4)
 script = ExtResource("1_er3x5")
 
